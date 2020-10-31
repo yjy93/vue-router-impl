@@ -12,6 +12,7 @@ export default class VueRouter {
     // 创建匹配器后, 核心的方法就是 匹配
     // match addRoutes 方法 这里的this 是 new VueRouter 实例
     this.matcher = createMatcher(options.routes || []);
+    this.beforeEachHooks = []
     // 根据当前的 mode 创建不同的 history 管理策略
     switch (options.mode) {
       case 'hash':
@@ -30,6 +31,12 @@ export default class VueRouter {
   // router 实例下的 push 方法
   push(location) {
     this.history.push(location)
+  }
+
+  // 路由守卫方法
+  beforeEach(fn) {
+    // 每次调用 beforeEach 方法时, 先把其存在一个数组之内.
+    this.beforeEachHooks.push(fn)
   }
 
   // VueRouter 的 init 路由初始化方法

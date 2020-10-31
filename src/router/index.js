@@ -52,9 +52,13 @@ const routes = [
 // history / window.addEventListener('popstate')
 
 const router = new VueRouter({
-  mode: 'hash',
+  mode: 'history',
   base: process.env.BASE_URL,
   routes
+})
+
+router.beforeEach((to, from, next) => {
+  console.log(123123);
 })
 
 export default router
