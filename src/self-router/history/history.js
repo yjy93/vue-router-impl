@@ -8,4 +8,9 @@ export default class BrowserHistory extends History {
   getCurrentLocation() {
     return window.location.pathname
   }
+
+  // history.push方法
+  push() {
+    
+  }
 }

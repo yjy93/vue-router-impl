@@ -21,6 +21,7 @@ export default class HashHistory extends History {
   }
 
   setupListener() { // 监听
+    // hash 的性能不如 popstate 好用, 监听浏览器历史记录的变化
     window.addEventListener('hashchange', () => {
       // 根据当前hash值去匹配对应的组件
       this.transitionTo(getHash())
@@ -29,6 +30,13 @@ export default class HashHistory extends History {
 
   getCurrentLocation() {
     return getHash()
+  }
+
+  // history.push()
+  push(location) {
+    console.log(123123123, location);
+    window.location.hash = location
+
   }
 
   // hash 模式的核心功能就是监听 hash 值的变化 window.addEventListener('hashchage')
